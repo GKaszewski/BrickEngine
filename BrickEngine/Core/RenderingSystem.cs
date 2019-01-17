@@ -5,7 +5,6 @@ namespace BrickEngine.Core
 {
     public class RenderingSystem
     {
-
         public static void Initialize() => Initialize(new Vector3(1f,1f,1f));
 
         public static void Initialize(Vector3 color)
@@ -14,6 +13,7 @@ namespace BrickEngine.Core
 
             GL.Enable(EnableCap.DepthTest);
             GL.Enable(EnableCap.FramebufferSrgb);
+            GL.Enable(EnableCap.Texture2D);
         }
 
         public static void ClearScreen() => GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
