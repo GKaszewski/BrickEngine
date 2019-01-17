@@ -57,6 +57,7 @@ namespace BrickEngine.Utility
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                Debug.Log(e.ToString());
                 Environment.Exit(1);
             }
             
@@ -72,6 +73,7 @@ namespace BrickEngine.Utility
             if(shaderID == 0)
             {
                 Console.WriteLine("Error: Could not create shader.");
+                Debug.Log("Error: Could not create shader.");
                 Environment.Exit(1);
             }
 
@@ -82,6 +84,7 @@ namespace BrickEngine.Utility
             {
                 Console.WriteLine("Error: Shader compiling error. Could not compile shader.");
                 Console.WriteLine(GL.GetShaderInfoLog(shaderID));
+                Debug.Log("Error: Shader compiling error. Could not compile shader. " + GL.GetShaderInfoLog(shaderID));
                 Environment.Exit(1);
             }
 
@@ -97,6 +100,7 @@ namespace BrickEngine.Utility
             {
                 Console.WriteLine("Error: Could not link shader program.");
                 Console.WriteLine(GL.GetProgramInfoLog(_programID));
+                Debug.Log("Error: Could not link shader program. " + GL.GetProgramInfoLog(_programID));
                 Environment.Exit(1);
             }
 
@@ -106,6 +110,7 @@ namespace BrickEngine.Utility
             {
                 Console.WriteLine("Error: Could not validate shader program.");
                 Console.WriteLine(GL.GetProgramInfoLog(_programID));
+                Debug.Log("Error: Could not validate shader program. " + GL.GetProgramInfoLog(_programID));
                 Environment.Exit(1);
             }
         }
@@ -131,7 +136,11 @@ namespace BrickEngine.Utility
         {
             var uniform = GetUniformLocation(uniformName);
             if(uniform == -1)
+            {
                 Console.WriteLine("Error: Could not find uniform " + uniformName + ".");
+                Debug.Log("Error: Could not find uniform " + uniformName + ".");
+                Environment.Exit(-1);
+            }
 
             _uniforms.Add(uniformName, uniform);
         }
