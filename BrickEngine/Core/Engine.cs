@@ -1,92 +1,60 @@
 ﻿using System;
-using SFML.Graphics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SFML.System;
-using SFML.Window;
+using BrickEngine.Utility;
+using OpenTK;
+using OpenTK.Input;
 
 namespace BrickEngine.Core
 {
-    class Engine
+    class Engine : BaseEngine
     {
-        private RenderWindow _window;
-        private readonly Clock _clock = new Clock();
-        private GameObject test;
-        private Vector2f moving;
+        private Mesh2D _mesh;
+        private Shader _shader;
+        private Transform _transform;
 
-        private float rotate = 1f;
-        private float speed = 10;
+        public Engine(string title, Vector2i size, uint framerate) : base(title, size, framerate){}
 
-        public Engine(string title, Vector2u size, uint framerate)
+        protected override void Initialize()
         {
-            var settings = new ContextSettings();
-            settings.AntialiasingLevel = 8;
-            _window = new RenderWindow(new VideoMode(size.X, size.Y), title, Styles.Default, settings);
-            _window.SetFramerateLimit(framerate);
-        }
+            _transform = new Transform();
+            _shader = new Shader("Resources/Shaders/vertex.shader", "Resources/Shaders/fragment.shader");
+            _shader.AddUniform("transformationMatrix");
 
-        private void LoadResources()
-        {
-            ResourceManager.LoadTexture("Graphics/test.png", "test");
-            test = new GameObject(ResourceManager.GetTexture("test"), new Vector2f(560, 120));
-        }
-
-        private void HandleEvents()
-        {
-            _window.Closed += Close;
-            _window.DispatchEvents();
-        }
-
-        private void HandleInput()
-        {
-            if (Keyboard.IsKeyPressed(Keyboard.Key.D))
-                moving.X++;
-            if (Keyboard.IsKeyPressed(Keyboard.Key.A))
-                moving.X--;
-            if (Keyboard.IsKeyPressed(Keyboard.Key.W) || Keyboard.IsKeyPressed(Keyboard.Key.Space))
-                moving.Y--;
-            if (Keyboard.IsKeyPressed(Keyboard.Key.S))
-                moving.Y++;
-        }
-
-        private void Close(object sender, EventArgs e)
-        {
-            ResourceManager.UnloadTextures();
-            _window.Close();
-        }
-
-        private void Update(float deltaTime)
-        {
-            //rotate++;
-            test.transform.position = moving * speed;
-            test.transform.rotation = rotate;
-            test.UpdateComponents();
-        }
-
-        private void Render()
-        {
-            _window.Clear();
-            test.Draw(_window);
-            _window.Display();
-        }
-
-        public void Run()
-        {
-            LoadResources();
-
-            while (_window.IsOpen)
+            Vertex[] verticies = new Vertex[]
             {
-                HandleEvents();
-                HandleInput();
-                
-                var time = _clock.Restart();
-                float deltaTime = time.AsMilliseconds();
+                new Vertex(-0.5f,0.5f),
+                new Vertex(-0.5f,-0.5f),
+                new Vertex(0.5f,-0.5f),
+                new Vertex(0.5f,0.5f),
+            };
 
-                Update(deltaTime);
-                Render();
-            }
+            int[] indices = new[]
+            {
+                0,1,3,
+                3,1,2
+            };
+
+           _mesh = new Mesh2D(verticies, indices);
+        }
+
+        protected override void Update()
+        {
+            if(Input.GetKey(Key.W)) _transform.Translate(0, 0.1f);
+            if(Input.GetKey(Key.S)) _transform.Translate(0, -0.1f);
+            if(Input.GetKey(Key.A)) _transform.Translate(-0.1f, 0f);
+            if(Input.GetKey(Key.D)) _transform.Translate(0.1f, 0f);
+        }
+
+        protected override void Render()
+        {
+            _shader.Start();
+            _shader.LoadMatrix("transformationMatrix", _transform.TransformationMatrix);
+            _mesh.Draw();
+            _shader.Stop();
+        }
+
+        protected override void OnClose()
+        {
+            
         }
     }
 }
