@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace BrickEngine.Core
 {
-    abstract class Component
+    public abstract class Component
     {
-        protected GameObject gameObject;
+        //protected GameObject gameObject;
 
-        protected Component(GameObject gameObject)
-        {
-            this.gameObject = gameObject;
-        }
+        //protected Component(GameObject gameObject)
+        //{
+        //    this.gameObject = gameObject;
+        //}
 
-        public abstract void Update();
+        //public abstract void Update();
     }
 }

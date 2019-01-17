@@ -1,31 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SFML.System;
+﻿
+using OpenTK;
 
 namespace BrickEngine.Core
 {
-    class Transform : Component
+    public class Transform : Component
     {
-        public Vector2f position;
-        public float rotation;
-        public Vector2f scale;
-
-        public Transform(GameObject gameObject) : base(gameObject)
+        private Vector2 _position;
+        public Vector2 Position
         {
-            position = gameObject.sprite.Position;
-            rotation = gameObject.sprite.Rotation;
-            scale = gameObject.sprite.Scale;
+            get => _position;
+            set => _position = value;
         }
 
-        public override void Update()
-        {
-            gameObject.sprite.Position = position;
-            gameObject.sprite.Rotation = rotation;
-            gameObject.sprite.Scale = scale;
-        }
+        public Matrix4 TransformationMatrix => Matrix4.CreateTranslation(new Vector3(_position.X, _position.Y, 0));
 
+        public Transform() : this(Vector2.Zero) { }
+        public Transform(Vector2 position) => _position = position;
+        public Transform(float x, float y) => _position = new Vector2(x, y);
+
+        public void Translate(Vector2 position) => _position += position;
+        public void Translate(float x, float y) => _position += new Vector2(x, y);
     }
 }
