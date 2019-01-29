@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrickEngine-Core", "BrickEngine\BrickEngine-Core.csproj", "{B20F2D12-2C7A-42AA-B0E2-44AFBA27D966}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrickEngine-Editor", "BrickEngine-MapEditor\BrickEngine-Editor.csproj", "{6C358C77-8FC1-42E4-9469-8B3B6DC32C03}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrickEngine-Editor", "BrickEngine-Editor\BrickEngine-Editor.csproj", "{6C358C77-8FC1-42E4-9469-8B3B6DC32C03}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrickEngine-Launcher", "BrickEngine-Launcher\BrickEngine-Launcher.csproj", "{43AE4C27-4950-4D7D-A60C-B5A010C5087B}"
 EndProject
