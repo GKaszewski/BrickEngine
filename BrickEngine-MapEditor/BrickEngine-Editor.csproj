@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6C358C77-8FC1-42E4-9469-8B3B6DC32C03}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>BrickEngine_MapEditor</RootNamespace>
+    <AssemblyName>BrickEngine-MapEditor</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Graphic\mapeditorbg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Graphic\Icons\about-32.png" />
+    <Resource Include="Graphic\Icons\add-folder-32.png" />
+    <Resource Include="Graphic\Icons\adjust-32.png" />
+    <Resource Include="Graphic\Icons\advance-32.png" />
+    <Resource Include="Graphic\Icons\advanced-search-32.png" />
+    <Resource Include="Graphic\Icons\answers-32.png" />
+    <Resource Include="Graphic\Icons\audio-32.png" />
+    <Resource Include="Graphic\Icons\available-updates-32.png" />
+    <Resource Include="Graphic\Icons\back-32.png" />
+    <Resource Include="Graphic\Icons\binoculars-32.png" />
+    <Resource Include="Graphic\Icons\block-32.png" />
+    <Resource Include="Graphic\Icons\bookmark-32.png" />
+    <Resource Include="Graphic\Icons\bookmarks-32.png" />
+    <Resource Include="Graphic\Icons\box-32.png" />
+    <Resource Include="Graphic\Icons\brick-wall-32.png" />
+    <Resource Include="Graphic\Icons\briefcase-32.png" />
+    <Resource Include="Graphic\Icons\calendar-32.png" />
+    <Resource Include="Graphic\Icons\cancel-32.png" />
+    <Resource Include="Graphic\Icons\candlestick-chart-32.png" />
+    <Resource Include="Graphic\Icons\checked-32.png" />
+    <Resource Include="Graphic\Icons\checked-checkbox-32.png" />
+    <Resource Include="Graphic\Icons\checklist-32.png" />
+    <Resource Include="Graphic\Icons\checkmark-32.png" />
+    <Resource Include="Graphic\Icons\clear.png" />
+    <Resource Include="Graphic\Icons\clock-32.png" />
+    <Resource Include="Graphic\Icons\close-all-tabs-32.png" />
+    <Resource Include="Graphic\Icons\collapse-arrow-32.png" />
+    <Resource Include="Graphic\Icons\compress-32.png" />
+    <Resource Include="Graphic\Icons\connect-32.png" />
+    <Resource Include="Graphic\Icons\contacts-32.png" />
+    <Resource Include="Graphic\Icons\content-32.png" />
+    <Resource Include="Graphic\Icons\cursor-32.png" />
+    <Resource Include="Graphic\Icons\curved-arrow-32.png" />
+    <Resource Include="Graphic\Icons\delete-32.png" />
+    <Resource Include="Graphic\Icons\delete-folder-32.png" />
+    <Resource Include="Graphic\Icons\details-32.png" />
+    <Resource Include="Graphic\Icons\direction-32.png" />
+    <Resource Include="Graphic\Icons\divide-32.png" />
+    <Resource Include="Graphic\Icons\divider-32.png" />
+    <Resource Include="Graphic\Icons\document-32.png" />
+    <Resource Include="Graphic\Icons\double-down-32.png" />
+    <Resource Include="Graphic\Icons\double-left-32.png" />
+    <Resource Include="Graphic\Icons\double-right-32.png" />
+    <Resource Include="Graphic\Icons\double-tick-32.png" />
+    <Resource Include="Graphic\Icons\double-up-32.png" />
+    <Resource Include="Graphic\Icons\down-3-32.png" />
+    <Resource Include="Graphic\Icons\down-arrow-32.png" />
+    <Resource Include="Graphic\Icons\down-left-32.png" />
+    <Resource Include="Graphic\Icons\down-right-32.png" />
+    <Resource Include="Graphic\Icons\download-from-the-cloud-32.png" />
+    <Resource Include="Graphic\Icons\downward-arrow-32.png" />
+    <Resource Include="Graphic\Icons\drag-32.png" />
+    <Resource Include="Graphic\Icons\drop-down-32.png" />
+    <Resource Include="Graphic\Icons\edit-32.png" />
+    <Resource Include="Graphic\Icons\end-32.png" />
+    <Resource Include="Graphic\Icons\enlarge-32.png" />
+    <Resource Include="Graphic\Icons\enter-32.png" />
+    <Resource Include="Graphic\Icons\equal-sign-32.png" />
+    <Resource Include="Graphic\Icons\error-32.png" />
+    <Resource Include="Graphic\Icons\exit-32.png" />
+    <Resource Include="Graphic\Icons\expand-arrow-32.png" />
+    <Resource Include="Graphic\Icons\external-link-32.png" />
+    <Resource Include="Graphic\Icons\fast-forward-32.png" />
+    <Resource Include="Graphic\Icons\file-32.png" />
+    <Resource Include="Graphic\Icons\filled-bookmark-ribbon-32.png" />
+    <Resource Include="Graphic\Icons\flow-32.png" />
+    <Resource Include="Graphic\Icons\folder-32.png" />
+    <Resource Include="Graphic\Icons\forward-32.png" />
+    <Resource Include="Graphic\Icons\forward-arrow-32.png" />
+    <Resource Include="Graphic\Icons\full-image-32.png" />
+    <Resource Include="Graphic\Icons\hand-cursor-32.png" />
+    <Resource Include="Graphic\Icons\hashtag-32.png" />
+    <Resource Include="Graphic\Icons\help-32.png" />
+    <Resource Include="Graphic\Icons\help.png" />
+    <Resource Include="Graphic\Icons\hide-32 %281%29.png" />
+    <Resource Include="Graphic\Icons\hide-32.png" />
+    <Resource Include="Graphic\Icons\hierarchy-32.png" />
+    <Resource Include="Graphic\Icons\home-32.png" />
+    <Resource Include="Graphic\Icons\idea-32.png" />
+    <Resource Include="Graphic\Icons\image-file-32.png" />
+    <Resource Include="Graphic\Icons\indeterminate-checkbox-32.png" />
+    <Resource Include="Graphic\Icons\Info-32.png" />
+    <Resource Include="Graphic\Icons\installing-updates-32.png" />
+    <Resource Include="Graphic\Icons\internet-folder-32.png" />
+    <Resource Include="Graphic\Icons\key-32.png" />
+    <Resource Include="Graphic\Icons\large-icons-32.png" />
+    <Resource Include="Graphic\Icons\left-2-32.png" />
+    <Resource Include="Graphic\Icons\left-3-32.png" />
+    <Resource Include="Graphic\Icons\left-32.png" />
+    <Resource Include="Graphic\Icons\list-32.png" />
+    <Resource Include="Graphic\Icons\lock-32.png" />
+    <Resource Include="Graphic\Icons\low-volume-32.png" />
+    <Resource Include="Graphic\Icons\mailbox-32.png" />
+    <Resource Include="Graphic\Icons\medium-icons-32.png" />
+    <Resource Include="Graphic\Icons\menu-32.png" />
+    <Resource Include="Graphic\Icons\menu-vertical-32.png" />
+    <Resource Include="Graphic\Icons\merge-horizontal-32.png" />
+    <Resource Include="Graphic\Icons\merge-vertical-32.png" />
+    <Resource Include="Graphic\Icons\mind-map-32.png" />
+    <Resource Include="Graphic\Icons\more-details-32.png" />
+    <Resource Include="Graphic\Icons\multiply-32.png" />
+    <Resource Include="Graphic\Icons\music-folder-32.png" />
+    <Resource Include="Graphic\Icons\mute-32.png" />
+    <Resource Include="Graphic\Icons\new.png" />
+    <Resource Include="Graphic\Icons\news-32.png" />
+    <Resource Include="Graphic\Icons\no-audio-32.png" />
+    <Resource Include="Graphic\Icons\no-synchronize-32.png" />
+    <Resource Include="Graphic\Icons\notification-32.png" />
+    <Resource Include="Graphic\Icons\open.png" />
+    <Resource Include="Graphic\Icons\original-size-32.png" />
+    <Resource Include="Graphic\Icons\padlock-32.png" />
+    <Resource Include="Graphic\Icons\pause-32.png" />
+    <Resource Include="Graphic\Icons\percentage-32.png" />
+    <Resource Include="Graphic\Icons\picture-32.png" />
+    <Resource Include="Graphic\Icons\play-32.png" />
+    <Resource Include="Graphic\Icons\plus-32.png" />
+    <Resource Include="Graphic\Icons\plus-math-32.png" />
+    <Resource Include="Graphic\Icons\plus-minus-32.png" />
+    <Resource Include="Graphic\Icons\prev-32.png" />
+    <Resource Include="Graphic\Icons\puzzle-32.png" />
+    <Resource Include="Graphic\Icons\questions-32.png" />
+    <Resource Include="Graphic\Icons\rating-32.png" />
+    <Resource Include="Graphic\Icons\record-32.png" />
+    <Resource Include="Graphic\Icons\redo.png" />
+    <Resource Include="Graphic\Icons\refresh-32.png" />
+    <Resource Include="Graphic\Icons\repeat-32.png" />
+    <Resource Include="Graphic\Icons\reply-arrow-32.png" />
+    <Resource Include="Graphic\Icons\resize-horizontal-32.png" />
+    <Resource Include="Graphic\Icons\resize-vertical-32.png" />
+    <Resource Include="Graphic\Icons\restart-32.png" />
+    <Resource Include="Graphic\Icons\resume-button-32.png" />
+    <Resource Include="Graphic\Icons\return-32.png" />
+    <Resource Include="Graphic\Icons\rewind-32.png" />
+    <Resource Include="Graphic\Icons\right-2-32.png" />
+    <Resource Include="Graphic\Icons\right-32.png" />
+    <Resource Include="Graphic\Icons\right-button-32.png" />
+    <Resource Include="Graphic\Icons\rotate-left-32.png" />
+    <Resource Include="Graphic\Icons\rotate-left-all32.png" />
+    <Resource Include="Graphic\Icons\rotate-right-32.png" />
+    <Resource Include="Graphic\Icons\save-32.png" />
+    <Resource Include="Graphic\Icons\save-as-32.png" />
+    <Resource Include="Graphic\Icons\save.png" />
+    <Resource Include="Graphic\Icons\search-32.png" />
+    <Resource Include="Graphic\Icons\search-folder-32.png" />
+    <Resource Include="Graphic\Icons\search-more-32.png" />
+    <Resource Include="Graphic\Icons\services-32.png" />
+    <Resource Include="Graphic\Icons\settings.png" />
+    <Resource Include="Graphic\Icons\share-3-32.png" />
+    <Resource Include="Graphic\Icons\share-32.png" />
+    <Resource Include="Graphic\Icons\shuffle-32.png" />
+    <Resource Include="Graphic\Icons\skip-to-start-32.png" />
+    <Resource Include="Graphic\Icons\small-icons-32.png" />
+    <Resource Include="Graphic\Icons\sort-32.png" />
+    <Resource Include="Graphic\Icons\sort-down-32.png" />
+    <Resource Include="Graphic\Icons\sort-left-32.png" />
+    <Resource Include="Graphic\Icons\sort-right-32.png" />
+    <Resource Include="Graphic\Icons\sort-up-32.png" />
+    <Resource Include="Graphic\Icons\speech-bubble-32.png" />
+    <Resource Include="Graphic\Icons\split-vertical-32.png" />
+    <Resource Include="Graphic\Icons\stop-32.png" />
+    <Resource Include="Graphic\Icons\subtract-32.png" />
+    <Resource Include="Graphic\Icons\support-32.png" />
+    <Resource Include="Graphic\Icons\switch-off-32.png" />
+    <Resource Include="Graphic\Icons\switch-on-32.png" />
+    <Resource Include="Graphic\Icons\synchronize-32.png" />
+    <Resource Include="Graphic\Icons\tasks-32.png" />
+    <Resource Include="Graphic\Icons\thumbnails-32.png" />
+    <Resource Include="Graphic\Icons\tick-box-32.png" />
+    <Resource Include="Graphic\Icons\tiles-32.png" />
+    <Resource Include="Graphic\Icons\toggle-off-32.png" />
+    <Resource Include="Graphic\Icons\toggle-on-32.png" />
+    <Resource Include="Graphic\Icons\toolbox-32.png" />
+    <Resource Include="Graphic\Icons\trash-32.png" />
+    <Resource Include="Graphic\Icons\trash-can-32.png" />
+    <Resource Include="Graphic\Icons\tree-structure-32.png" />
+    <Resource Include="Graphic\Icons\tune-32.png" />
+    <Resource Include="Graphic\Icons\unavailable-32.png" />
+    <Resource Include="Graphic\Icons\unchecked-checkbox-32.png" />
+    <Resource Include="Graphic\Icons\undo.png" />
+    <Resource Include="Graphic\Icons\up-2-32.png" />
+    <Resource Include="Graphic\Icons\up-3-32.png" />
+    <Resource Include="Graphic\Icons\up-32.png" />
+    <Resource Include="Graphic\Icons\up-down-arrow-32.png" />
+    <Resource Include="Graphic\Icons\up-left-32.png" />
+    <Resource Include="Graphic\Icons\up-right-32.png" />
+    <Resource Include="Graphic\Icons\up-squared-32.png" />
+    <Resource Include="Graphic\Icons\upload-to-the-cloud-32.png" />
+    <Resource Include="Graphic\Icons\voice-32.png" />
+    <Resource Include="Graphic\Icons\windows-explorer-32.png" />
+    <Resource Include="Graphic\Icons\workflow-32.png" />
+    <Resource Include="Graphic\Icons\zoom-in-32.png" />
+    <Resource Include="Graphic\Icons\zoom-out-32.png" />
+    <Resource Include="Graphic\Icons\zoom-to-actual-size-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Graphic\Icons\git-32.png" />
+    <Resource Include="Graphic\Icons\github-32.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
