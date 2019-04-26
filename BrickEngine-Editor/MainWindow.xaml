@@ -23,8 +23,8 @@
     </Window.Resources>
 
     <Grid Background="#FF252526">
-        <Menu IsMainMenu="True" Margin="0" Height="20" VerticalAlignment="Top">
-            <MenuItem Header="File" Foreground="#FFF1F1F1" Height="18" VerticalAlignment="Top">
+        <Menu IsMainMenu="True" Margin="0" Height="25" VerticalAlignment="Top">
+            <MenuItem Header="File" Foreground="#FFF1F1F1" Height="20" VerticalAlignment="Top">
                 <MenuItem Header="New scene" Height="20" Foreground="#000">
                     <MenuItem.Icon>
                         <Image Source="Graphic/Icons/new.png" />
@@ -73,7 +73,7 @@
                             <Image Source="Graphic/Icons/contacts-32.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Graphic settings ..." Height="20" Foreground="#000">
+                    <MenuItem Header="Graphics settings ..." Height="20" Foreground="#000">
                         <MenuItem.Icon>
                             <Image Source="Graphic/Icons/picture-32.png" />
                         </MenuItem.Icon>
@@ -85,7 +85,7 @@
                     </MenuItem>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Oprions" Foreground="#FFF1F1F1">
+            <MenuItem Header="Options" Foreground="#FFF1F1F1">
                 <MenuItem Header="Preferences" Height="20" Foreground="#000">
                     <MenuItem.Icon>
                         <Image Source="Graphic/Icons/settings.png" />
