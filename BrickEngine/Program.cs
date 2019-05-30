@@ -7,7 +7,7 @@ namespace BrickEngine
     {
         static void Main(string[] args)
         {
-            var engine = new Engine("GAME TITLE {BRICK ENGINE} IN DEVELOPMENT", new Vector2i(1280, 720), 60);
+            var engine = new Engine("GAME TITLE {BRICK ENGINE} IN DEVELOPMENT", new Vector2i(1280, 720));
 
             //using (Toolkit.Init()) new Engine("GAME TITLE {BRICK ENGINE} IN DEVELOPMENT", new Vector2i(1280, 720), 60);
         }

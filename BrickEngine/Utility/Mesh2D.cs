@@ -3,45 +3,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using OpenTK.Graphics.OpenGL4;
+using OpenTK;
+using OpenTK.Graphics;
+using OpenTK.Graphics.OpenGL;
 
 namespace BrickEngine.Utility
 {
     public class Mesh2D
     {
-        private int _vboID;
-        private int _iboID;
-        private int _size;
+        private int vao;
+        private int vbo;
+        private int ebo;
+        private int indices;
 
-        public Mesh2D(Vertex[] vertices, int[] indices)
+        public Mesh2D(float[] vertices, int[] indices)
         {
-            _vboID = GL.GenBuffer();
-            _iboID = GL.GenBuffer();
-            _size = indices.Length;
+            vbo = GL.GenBuffer();
+            ebo = GL.GenBuffer();
+            vao = GL.GenVertexArray();
+            this.indices = indices.Length;
 
-            float[] data = Vertex.Process(vertices);
+            GL.BindVertexArray(vao);
 
-            GL.BindBuffer(BufferTarget.ArrayBuffer, _vboID);
-            GL.BufferData(BufferTarget.ArrayBuffer, (IntPtr)(data.Length * sizeof(float)), data, BufferUsageHint.StaticDraw);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, vbo);
+            GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
 
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, _iboID);
-            GL.BufferData(BufferTarget.ElementArrayBuffer, (IntPtr)(indices.Length * sizeof(int)), indices, BufferUsageHint.StaticDraw);
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, ebo);
+            GL.BufferData(BufferTarget.ElementArrayBuffer, this.indices * sizeof(int), indices, BufferUsageHint.StaticDraw);
+
+            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
+            GL.EnableVertexAttribArray(0);
+
+        }
+
+        ~Mesh2D()
+        {
+            //GL.DeleteBuffer(vbo);
+            //GL.DeleteBuffer(ebo);
+            //GL.DeleteBuffer(vao);
         }
 
         public void Draw()
         {
-            GL.EnableVertexAttribArray(0);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, _vboID);
-            GL.VertexAttribPointer(0,Vertex.SIZE, VertexAttribPointerType.Float, false, Vertex.SIZE * 4, 0);
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, _iboID);
-            GL.DrawElements(BeginMode.Triangles, _size, DrawElementsType.UnsignedInt, 0);
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
-
-            GL.DisableVertexAttribArray(0);
+           GL.BindVertexArray(vao);
+           GL.DrawElements(PrimitiveType.Triangles, indices, DrawElementsType.UnsignedInt, 0);
         }
     }
 }
