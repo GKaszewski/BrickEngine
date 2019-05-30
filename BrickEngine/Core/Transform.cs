@@ -12,6 +12,8 @@ namespace BrickEngine.Core
             set => _position = value;
         }
 
+        public Vector2 Scale { get; set; } = Vector2.One;
+
         public Matrix4 TransformationMatrix => Matrix4.CreateTranslation(new Vector3(_position.X, _position.Y, 0));
 
         public Transform() : this(Vector2.Zero) { }

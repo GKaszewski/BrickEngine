@@ -9,15 +9,16 @@ namespace BrickEngine.Utility
 {
     public class Shader
     {
-        private int _programID;
         private Dictionary<string, int> _uniforms;
+
+        public int ProgramID { get; }
 
         public Shader(string vertexFileName)
         {
-            _programID = GL.CreateProgram();
+            ProgramID = GL.CreateProgram();
             _uniforms = new Dictionary<string, int>();
 
-            if (_programID == 0)
+            if (ProgramID == 0)
             {
                 Console.WriteLine("Error: Could not create shader.");
                 Environment.Exit(1);
@@ -29,10 +30,10 @@ namespace BrickEngine.Utility
 
         public Shader(string vertexFileName, string fragmentFileName)
         {
-            _programID = GL.CreateProgram();
+            ProgramID = GL.CreateProgram();
             _uniforms = new Dictionary<string, int>();
 
-            if(_programID == 0)
+            if(ProgramID == 0)
             {
                 Console.WriteLine("Error: Could not create shader.");
                 Environment.Exit(1);
@@ -88,34 +89,34 @@ namespace BrickEngine.Utility
                 Environment.Exit(1);
             }
 
-            GL.AttachShader(_programID, shaderID);
+            GL.AttachShader(ProgramID, shaderID);
         }
 
         private void CompileShader()
         {
-            GL.LinkProgram(_programID);
-            GL.GetProgram(_programID, GetProgramParameterName.LinkStatus, out var linkStatus);
+            GL.LinkProgram(ProgramID);
+            GL.GetProgram(ProgramID, GetProgramParameterName.LinkStatus, out var linkStatus);
 
             if (linkStatus == 0)
             {
                 Console.WriteLine("Error: Could not link shader program.");
-                Console.WriteLine(GL.GetProgramInfoLog(_programID));
-                Debug.Log("Error: Could not link shader program. " + GL.GetProgramInfoLog(_programID));
+                Console.WriteLine(GL.GetProgramInfoLog(ProgramID));
+                Debug.Log("Error: Could not link shader program. " + GL.GetProgramInfoLog(ProgramID));
                 Environment.Exit(1);
             }
 
-            GL.ValidateProgram(_programID);
-            GL.GetProgram(_programID, GetProgramParameterName.ValidateStatus, out var validationStatus);
+            GL.ValidateProgram(ProgramID);
+            GL.GetProgram(ProgramID, GetProgramParameterName.ValidateStatus, out var validationStatus);
             if (validationStatus == 0)
             {
                 Console.WriteLine("Error: Could not validate shader program.");
-                Console.WriteLine(GL.GetProgramInfoLog(_programID));
-                Debug.Log("Error: Could not validate shader program. " + GL.GetProgramInfoLog(_programID));
+                Console.WriteLine(GL.GetProgramInfoLog(ProgramID));
+                Debug.Log("Error: Could not validate shader program. " + GL.GetProgramInfoLog(ProgramID));
                 Environment.Exit(1);
             }
         }
 
-        private int GetUniformLocation(string uniformName) => GL.GetUniformLocation(_programID, uniformName);
+        private int GetUniformLocation(string uniformName) => GL.GetUniformLocation(ProgramID, uniformName);
 
         #region Uniform loading
         public void LoadInt(string uniformName, int value) => GL.Uniform1(_uniforms[uniformName], value);
@@ -128,7 +129,11 @@ namespace BrickEngine.Utility
         public void LoadMatrix(string uniformName, Matrix4 value) => GL.UniformMatrix4(_uniforms[uniformName], true, ref value);
         #endregion
 
-        public void Start() => GL.UseProgram(_programID);
+        public void Start()
+        {
+            GL.UseProgram(ProgramID);
+            //GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+        }
 
         public void Stop() => GL.UseProgram(0);
 
@@ -145,5 +150,15 @@ namespace BrickEngine.Utility
             _uniforms.Add(uniformName, uniform);
         }
 
+        public int GetAttribute(string name)
+        {
+            var attributeID = 0;
+            attributeID = GL.GetAttribLocation(ProgramID, name);
+
+            if(attributeID == -1)
+                Debug.Log($"Error binding attribute {name}");
+
+            return attributeID;
+        }
     }
 }

@@ -1,60 +1,55 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using BrickEngine.Utility;
 using OpenTK;
 using OpenTK.Input;
+using OpenTK.Graphics;
+using OpenTK.Graphics.OpenGL;
 
 namespace BrickEngine.Core
 {
-    class Engine : BaseEngine
+    public class Engine : BaseEngine
     {
-        private Mesh2D _mesh;
-        private Shader _shader;
-        private Transform _transform;
+        public Engine(string title, Vector2i size) : base(title, size){}
 
-        public Engine(string title, Vector2i size, uint framerate) : base(title, size, framerate){}
+        private SpriteRenderer sprite;
+        private Shader shader;
+        private Texture texture;
+
+        float[] vertices = {
+            0.5f,  0.5f, 0.0f,  // top right
+            0.5f, -0.5f, 0.0f,  // bottom right
+            -0.5f, -0.5f, 0.0f,  // bottom left
+            -0.5f,  0.5f, 0.0f   // top left
+        };
+
+        int[] indices = {  // note that we start from 0!
+            0, 1, 3,   // first triangle
+            1, 2, 3    // second triangle
+        };
+
 
         protected override void Initialize()
         {
-            _transform = new Transform();
-            _shader = new Shader("Resources/Shaders/vertex.shader", "Resources/Shaders/fragment.shader");
-            _shader.AddUniform("transformationMatrix");
-
-            Vertex[] verticies = new Vertex[]
-            {
-                new Vertex(-0.5f,0.5f),
-                new Vertex(-0.5f,-0.5f),
-                new Vertex(0.5f,-0.5f),
-                new Vertex(0.5f,0.5f),
-            };
-
-            int[] indices = new[]
-            {
-                0,1,3,
-                3,1,2
-            };
-
-           _mesh = new Mesh2D(verticies, indices);
+            shader = new Shader("Resources/Shaders/vertex.shader", "Resources/Shaders/fragment.shader");
+            texture = new Texture("Resources/Graphics/test1.png");
+            var mesh = new Mesh2D(vertices, indices);
+            sprite = new SpriteRenderer(texture, shader, mesh);
         }
 
         protected override void Update()
         {
-            if(Input.GetKey(Key.W)) _transform.Translate(0, 0.1f);
-            if(Input.GetKey(Key.S)) _transform.Translate(0, -0.1f);
-            if(Input.GetKey(Key.A)) _transform.Translate(-0.1f, 0f);
-            if(Input.GetKey(Key.D)) _transform.Translate(0.1f, 0f);
+ 
         }
 
         protected override void Render()
         {
-            _shader.Start();
-            _shader.LoadMatrix("transformationMatrix", _transform.TransformationMatrix);
-            _mesh.Draw();
-            _shader.Stop();
+            sprite.Draw();
         }
 
         protected override void OnClose()
         {
-            
         }
     }
 }

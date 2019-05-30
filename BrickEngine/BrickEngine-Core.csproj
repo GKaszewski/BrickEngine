@@ -48,6 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation\AnimationClip.cs" />
+    <Compile Include="Animation\AnimationSample.cs" />
+    <Compile Include="Animation\Joint.cs" />
+    <Compile Include="Animation\Skeleton.cs" />
     <Compile Include="Core\Camera3D.cs" />
     <Compile Include="Core\Component.cs" />
     <Compile Include="Core\BaseEngine.cs" />
@@ -56,13 +60,17 @@
     <Compile Include="Core\Input.cs" />
     <Compile Include="Core\RenderingSystem.cs" />
     <Compile Include="Core\ResourceManager.cs" />
+    <Compile Include="Core\Settings.cs" />
+    <Compile Include="Core\SpriteRenderer.cs" />
     <Compile Include="Core\State.cs" />
     <Compile Include="Core\StateMachine.cs" />
     <Compile Include="Core\Transform.cs" />
+    <Compile Include="Graphics\Cube.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Debug.cs" />
     <Compile Include="Utility\Mesh2D.cs" />
+    <Compile Include="Utility\Mesh3D.cs" />
     <Compile Include="Utility\Shader.cs" />
     <Compile Include="Utility\Texture.cs" />
     <Compile Include="Utility\Vector2i.cs" />
@@ -93,5 +101,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
