@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using BrickEngine.Graphics;
 using BrickEngine.Utility;
 using OpenTK;
 using OpenTK.Input;
@@ -16,12 +17,15 @@ namespace BrickEngine.Core
         private SpriteRenderer sprite;
         private Shader shader;
         private Texture texture;
+        private Cube cubeMesh;
 
-        float[] vertices = {
-            0.5f,  0.5f, 0.0f,  // top right
-            0.5f, -0.5f, 0.0f,  // bottom right
-            -0.5f, -0.5f, 0.0f,  // bottom left
-            -0.5f,  0.5f, 0.0f   // top left
+        float[] vertices =
+        {
+            //Position          Texture coordinates
+            0.5f,  0.5f, 0.0f, 1f, 1.0f, // top right
+            0.5f, -0.5f, 0.0f, 1f, 0.0f, // bottom right
+            -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, // bottom left
+            -0.5f,  0.5f, 0.0f, 0.0f, 1f  // top left
         };
 
         int[] indices = {  // note that we start from 0!
@@ -33,14 +37,16 @@ namespace BrickEngine.Core
         protected override void Initialize()
         {
             shader = new Shader("Resources/Shaders/vertex.shader", "Resources/Shaders/fragment.shader");
-            texture = new Texture("Resources/Graphics/test1.png");
-            var mesh = new Mesh2D(vertices, indices);
+            texture = new Texture("Resources/Graphics/test.png", true);
+
+            var mesh = new Mesh2D(vertices, indices, shader);
             sprite = new SpriteRenderer(texture, shader, mesh);
+       
         }
 
         protected override void Update()
         {
- 
+            
         }
 
         protected override void Render()

@@ -16,7 +16,7 @@ namespace BrickEngine.Utility
         private int ebo;
         private int indices;
 
-        public Mesh2D(float[] vertices, int[] indices)
+        public Mesh2D(float[] vertices, int[] indices, Shader shader)
         {
             vbo = GL.GenBuffer();
             ebo = GL.GenBuffer();
@@ -31,8 +31,13 @@ namespace BrickEngine.Utility
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, ebo);
             GL.BufferData(BufferTarget.ElementArrayBuffer, this.indices * sizeof(int), indices, BufferUsageHint.StaticDraw);
 
-            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
+            //GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
+            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 5 * sizeof(float), 0);
+            int texCoordLocation = shader.GetAttribute("aTexCoord");
+            GL.EnableVertexAttribArray(texCoordLocation);
+            GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 5 * sizeof(float), 3 * sizeof(float));
             GL.EnableVertexAttribArray(0);
+            GL.EnableVertexAttribArray(1);
 
         }
 

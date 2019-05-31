@@ -37,6 +37,7 @@ namespace BrickEngine.Core
         public void Draw()
         {
             Shader.Start();
+            GL.BindTexture(TextureTarget.Texture2D, Texture.ID);
             Mesh.Draw();
             Shader.Stop();
         }
