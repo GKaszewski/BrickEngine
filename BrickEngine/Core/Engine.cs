@@ -33,14 +33,32 @@ namespace BrickEngine.Core
             1, 2, 3    // second triangle
         };
 
+       
 
         protected override void Initialize()
         {
             shader = new Shader("Resources/Shaders/vertex.shader", "Resources/Shaders/fragment.shader");
             texture = new Texture("Resources/Graphics/test.png", true);
+            var colorShader = new Shader("Resources/Shaders/colorVertex.shader", "Resources/Shaders/colorFragment.shader");
 
-            var mesh = new Mesh2D(vertices, indices, shader);
-            sprite = new SpriteRenderer(texture, shader, mesh);
+            var mesh = new TexturedSprite2D(vertices, indices, shader, texture);
+
+            var col = Color.Green;
+
+            float[] coloredVertices = {
+                0.5f,  0.5f, 0.0f, col.R, col.G, col.B, col.A,  // top right
+                0.5f, -0.5f, 0.0f, col.R, col.G, col.B, col.A, // bottom right
+                -0.5f, -0.5f, 0.0f, col.R, col.G, col.B, col.A, // bottom left
+                -0.5f,  0.5f, 0.0f,  col.R, col.G, col.B, col.A, // top left
+            };
+
+            int[] coloredIndices = {  // note that we start from 0!
+                0, 1, 3,   // first triangle
+                1, 2, 3    // second triangle
+            };
+
+            var coloredMesh = new ColoredSprite2D(coloredVertices, coloredIndices, Color.Blue, colorShader);
+            sprite = new SpriteRenderer(coloredMesh);
        
         }
 

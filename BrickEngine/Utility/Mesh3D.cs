@@ -20,10 +20,15 @@ namespace BrickEngine.Utility
         public Matrix4 ViewProjectionMatrix = Matrix4.Identity;
         public Matrix4 ModelViewProjectionMatrix = Matrix4.Identity;
 
-        public abstract Vector3[] GetVerticies();
+        protected int vao;
+        protected int vbo;
+        protected int ebo;
+
+        public abstract float[] GetVerticies();
         public abstract int[] GetIndices(int offset = 0);
-        public abstract Vector3[] GetColorData();
+        public abstract float[] GetColorData();
         public abstract void CalculateModelMatrix();
+        public abstract void Draw();
 
     }
 }

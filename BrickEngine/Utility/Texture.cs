@@ -34,6 +34,26 @@ namespace BrickEngine.Utility
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)All.Nearest);
         }
 
+        public Texture(string path, bool flip)
+        {
+            ID = GL.GenTexture();
+            GL.BindTexture(TextureTarget.Texture2D, ID);
+            var bitmap = new Bitmap(path);
+            if(flip)
+                bitmap.RotateFlip(RotateFlipType.RotateNoneFlipY);
+
+            Width = bitmap.Width;
+            Height = bitmap.Height;
+            var data = bitmap.LockBits(new Rectangle(0, 0, Width, Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, Width, Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
+            bitmap.UnlockBits(data);
+
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)All.ClampToEdge);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)All.ClampToEdge);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)All.Nearest);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)All.Nearest);
+        }
+
 
         public static int LoadTexture(string path, int quality = 0, bool repeat = true, bool flipY = false)
         {

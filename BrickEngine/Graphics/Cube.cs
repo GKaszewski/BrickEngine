@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using BrickEngine.Utility;
 using OpenTK;
+using OpenTK.Graphics.OpenGL;
+
 
 namespace BrickEngine.Graphics
 {
@@ -17,16 +19,17 @@ namespace BrickEngine.Graphics
             ColorDataCount = 8;
         }
 
-        public override Vector3[] GetVerticies()
+        public override float[] GetVerticies()
         {
-            return new Vector3[] {new Vector3(-0.5f, -0.5f,  -0.5f),
-                new Vector3(0.5f, -0.5f,  -0.5f),
-                new Vector3(0.5f, 0.5f,  -0.5f),
-                new Vector3(-0.5f, 0.5f,  -0.5f),
-                new Vector3(-0.5f, -0.5f,  0.5f),
-                new Vector3(0.5f, -0.5f,  0.5f),
-                new Vector3(0.5f, 0.5f,  0.5f),
-                new Vector3(-0.5f, 0.5f,  0.5f),
+            return new float[] {
+                -0.5f, -0.5f,  -0.5f,
+                0.5f, -0.5f,  -0.5f,
+                0.5f, 0.5f,  -0.5f,
+                -0.5f, 0.5f,  -0.5f,
+                -0.5f, -0.5f,  0.5f,
+                0.5f, -0.5f,  0.5f,
+                0.5f, 0.5f,  0.5f,
+                -0.5f, 0.5f,  0.5f,
             };
         }
 
@@ -65,17 +68,17 @@ namespace BrickEngine.Graphics
             return inds;
         }
 
-        public override Vector3[] GetColorData()
+        public override float[] GetColorData()
         {
-            return new Vector3[] {
-                new Vector3( 1f, 0f, 0f),
-                new Vector3( 0f, 0f, 1f),
-                new Vector3( 0f, 1f, 0f),
-                new Vector3( 1f, 0f, 0f),
-                new Vector3( 0f, 0f, 1f),
-                new Vector3( 0f, 1f, 0f),
-                new Vector3( 1f, 0f, 0f),
-                new Vector3( 0f, 0f, 1f)
+            return new float[] {
+                1f, 0f, 0f,
+                0f, 0f, 1f,
+                0f, 1f, 0f,
+                1f, 0f, 0f,
+                0f, 0f, 1f,
+                0f, 1f, 0f,
+                1f, 0f, 0f,
+                0f, 0f, 1f 
             };
         }
 
@@ -85,6 +88,11 @@ namespace BrickEngine.Graphics
                           Matrix4.CreateRotationX(Rotation.X) *
                           Matrix4.CreateRotationY(Rotation.Y) * 
                           Matrix4.CreateRotationZ(Rotation.Z);
+        }
+
+        public override void Draw()
+        {
+            
         }
     }
 }

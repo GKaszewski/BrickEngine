@@ -9,14 +9,14 @@ using OpenTK.Graphics.OpenGL;
 
 namespace BrickEngine.Utility
 {
-    public class Mesh2D
+    public abstract class Mesh2D
     {
-        private int vao;
-        private int vbo;
-        private int ebo;
-        private int indices;
+        protected int vao;
+        protected int vbo;
+        protected int ebo;
+        protected int indices;
 
-        public Mesh2D(float[] vertices, int[] indices, Shader shader)
+        public Mesh2D(float[] vertices, int[] indices)
         {
             vbo = GL.GenBuffer();
             ebo = GL.GenBuffer();
@@ -32,13 +32,6 @@ namespace BrickEngine.Utility
             GL.BufferData(BufferTarget.ElementArrayBuffer, this.indices * sizeof(int), indices, BufferUsageHint.StaticDraw);
 
             //GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
-            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 5 * sizeof(float), 0);
-            int texCoordLocation = shader.GetAttribute("aTexCoord");
-            GL.EnableVertexAttribArray(texCoordLocation);
-            GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 5 * sizeof(float), 3 * sizeof(float));
-            GL.EnableVertexAttribArray(0);
-            GL.EnableVertexAttribArray(1);
-
         }
 
         ~Mesh2D()
@@ -48,10 +41,6 @@ namespace BrickEngine.Utility
             //GL.DeleteBuffer(vao);
         }
 
-        public void Draw()
-        {
-           GL.BindVertexArray(vao);
-           GL.DrawElements(PrimitiveType.Triangles, indices, DrawElementsType.UnsignedInt, 0);
-        }
+        public abstract void Draw();
     }
 }
